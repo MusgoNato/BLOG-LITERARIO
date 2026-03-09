@@ -217,6 +217,31 @@
       .hero-title { font-size: 44px; }
       .pagination-wrapper { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
+
+        .book-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--parchment);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .card-content {
+      flex: 1; /* ocupa todo espaço disponível menos a imagem */
+    }
+
+    .card-thumb {
+      width: 80px;   /* largura da miniatura */
+      height: 120px; /* altura proporcional */
+      object-fit: cover;
+      border-radius: 2px;
+      flex-shrink: 0; /* impede que encolha */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -224,7 +249,7 @@
 <header>
   <div class="header-top">
     <span class="header-label">Blog Pessoal &amp; Literário</span>
-    <span class="header-label">Est. 2024</span>
+    <span class="header-label">Est. 2026</span>
   </div>
   <div class="header-hero">
     <div class="hero-title">Entre<br/><em>Páginas</em></div>
@@ -244,7 +269,7 @@
 <main class="main-wrapper">
 
   <div class="section-header" style="animation: fadeUp 0.5s ease 0.15s both; opacity:0; animation-fill-mode:forwards;">
-    <h2 class="section-title">Leitura em <em>destaque</em></h2>
+    <h2 class="section-title">Leitura em <em>andamento</em></h2>
     <div class="section-rule"></div>
   </div>
 
@@ -286,12 +311,10 @@
   </div>
   <div class="about-content">
     <h2 class="about-name">Sobre Mim</h2>
-    <p class="about-role">◆ LEITOR &amp; ENTUSIASTA DE LIVROS</p>
+    <p class="about-role">◆ LEITOR</p>
+
     <p class="about-text">
-      Olá! Este blog é meu espaço pessoal para registrar e compartilhar as histórias que me acompanharam. Acredito que cada livro deixa uma marca diferente — alguns mudam a forma como vemos o mundo, outros nos transportam para lugares que jamais visitaríamos, e alguns simplesmente nos fazem companhia nos dias difíceis.
-    </p>
-    <p class="about-text">
-      Aqui você encontra minhas impressões sinceras sobre cada leitura. Não sou crítico literário — sou apenas alguém que ama livros e quer dividir essa paixão.
+      Aqui você encontra minhas impressões sinceras sobre cada leitura. Não sou crítico literário — sou apenas alguém que lê livros :).
     </p>
     <div class="about-stats">
       <div class="stat-box"><span class="stat-number" id="stat-total">—</span><span class="stat-label">Livros lidos</span></div>
@@ -303,7 +326,7 @@
 
 <footer>
   <div class="footer-brand">Entre Páginas</div>
-  <div class="footer-copy">Blog pessoal de leituras · 2024</div>
+  <div class="footer-copy">Blog pessoal de leituras · 2026</div>
 </footer>
 
 <script>
@@ -317,94 +340,101 @@
 const BOOKS = [
   {
     id: 1,
-    title: '1984',
-    author: 'George Orwell',
-    year: 1949,
-    genre: 'Romance Distópico',
+    img: 'entendendo_algoritmos.jpg',
+    title: 'Entendendo Algoritmos',
+    author: 'Aditya Y. Bhargava',
+    year: 1933,
+    genre: 'Educativo',
     rating: 5,
-    readIn: 'Jan 2024',
-    pages: 328,
+    readIn: '2026',
+    pages: 263,
     language: 'Português',
     featured: true,
-    description: 'Uma das obras mais impactantes que já li. Orwell cria um mundo aterrorizante onde o Estado controla não apenas as ações, mas os próprios pensamentos dos cidadãos. A figura do Grande Irmão e o conceito de "duplipensar" ficaram gravados na minha mente muito depois de fechar o livro. Uma leitura obrigatória para entender o poder e a linguagem como instrumentos de dominação.',
+    description: '',
   },
   {
     id: 2,
-    title: 'O Mundo de Sofia',
-    author: 'Jostein Gaarder',
+    img: 'mao.jpg',
+    title: 'A mão misteriosa',
+    author: 'Agatha Christie',
     year: 1991,
-    genre: 'Filosofia',
+    genre: 'Mistério',
     rating: 5,
     readIn: '2023',
-    pages: 567,
+    pages: 188,
     language: 'Português',
     featured: false,
-    description: 'Gaarder faz algo notável: transforma séculos de filosofia em uma narrativa acessível e envolvente. Acompanhei Sofia descobrindo os grandes pensadores com genuína curiosidade. O livro é tanto um romance de mistério quanto um curso completo de filosofia ocidental. Saí dele com vontade de ler Platão, Kant e Sartre.',
+    description: '',
   },
   {
     id: 3,
-    title: 'Cem Anos de Solidão',
-    author: 'Gabriel García Márquez',
+    img: 'casa_torta.jpg',
+    title: 'A casa torta',
+    author: 'Agatha Christie',
     year: 1967,
-    genre: 'Romance Literário',
+    genre: 'Mistério',
     rating: 5,
-    readIn: '2023',
+    readIn: '2024',
     pages: 422,
     language: 'Português',
     featured: false,
-    description: 'Levei algumas páginas para me adaptar ao ritmo e à genealogia dos Buendía, mas quando me apeguei à história, foi impossível largar. O realismo mágico de Márquez cria uma realidade própria onde o impossível é narrado com a mesma naturalidade que o cotidiano. Uma epopeia familiar que é também a história da América Latina.',
+    description: '',
   },
   {
     id: 4,
-    title: 'Sapiens',
-    author: 'Yuval Noah Harari',
+    img: 'contrato_social.jpg',
+    title: 'O contrato social',
+    author: 'Jean-Jacques Rousseau',
     year: 2011,
     genre: 'Não-Ficção',
     rating: 4,
-    readIn: '2023',
-    pages: 464,
+    readIn: '2025',
+    pages: 197,
     language: 'Português',
     featured: false,
-    description: 'Harari tem o dom de tornar a história da humanidade fascinante ao questionar premissas que sempre tomamos como dadas. A ideia de que dinheiro, religiões e nações são "ficções coletivas" que organizam a sociedade mudou minha forma de enxergar o mundo. Discutível em pontos, mas incrivelmente estimulante intelectualmente.',
+    description: '',
   },
   {
     id: 5,
-    title: 'Fundação',
-    author: 'Isaac Asimov',
+    img: 'pequeno_principe.jpg',
+    title: 'O Pequeno Príncipe',
+    author: 'Antoine de Saint-Exupéry',
     year: 1951,
     genre: 'Ficção Científica',
     rating: 4,
     readIn: '2024',
-    pages: 320,
+    pages: 91,
     language: 'Português',
     featured: false,
-    description: 'Asimov imagina uma ciência capaz de prever o futuro da civilização — e os homens que tentam guiá-la. A escala épica da história, abrangendo séculos e galáxias, é equilibrada por personagens humanos e dilemas políticos surpreendentemente atuais. Um pilar da ficção científica que resiste muito bem ao tempo.',
+    description: '',
   },
   {
     id: 6,
-    title: 'O Poder do Hábito',
-    author: 'Charles Duhigg',
+    img: 'ass.jpg',
+    title: 'Assassinato no Expresso Oriente',
+    author: 'Agatha Christie',
     year: 2012,
-    genre: 'Psicologia',
-    rating: 4,
-    readIn: '2024',
-    pages: 408,
+    genre: 'Mistério',
+    rating: 5,
+    readIn: '2022',
+    pages: 246,
     language: 'Português',
     featured: false,
-    description: 'Duhigg explica com clareza como os hábitos se formam — o ciclo gatilho, rotina, recompensa — e como podemos (re)programar os nossos. O que me impressionou foi ver esse modelo aplicado não só a indivíduos, mas a empresas e movimentos sociais. Saí do livro revisando minha rotina com outros olhos.',
+    description: '',
   },
   {
     id: 7,
-    title: 'O Senhor dos Anéis',
-    author: 'J.R.R. Tolkien',
+    img: 'a_metamorfose.jpg',
+    title: 'A Metamorfose',
+    author: 'Franz Kafka',
     year: 1954,
     genre: 'Fantasia',
     rating: 5,
-    readIn: '2024',
-    pages: 1216,
-    language: 'Inglês',
+    readIn: '2026',
+    pages: 138,
+    language: 'Português',
     featured: false,
-    description: 'A profundidade que Tolkien construiu — línguas, histórias, mapas, mitologias inteiras — é simplesmente incomparável. A jornada dos hobbits é ao mesmo tempo épica e íntima, sobre amizade, coragem e o peso de carregar algo que corrompe. Ler na tradução original é uma experiência ainda mais rica.',
+    description: '',
   },
 ];
 
@@ -436,7 +466,7 @@ function renderFeatured() {
   document.getElementById('featured-block').innerHTML = `
     <div class="book-cover-placeholder">
       <div class="spine"></div>
-      <span class="book-cover-icon">📚</span>
+      <img src='public/imgs/${book.img}' alt='${book.title}' style="width:100%; height:100%; object-fit:cover;"></img>
     </div>
     <div class="featured-content">
       <span class="book-genre-tag">◆ ${book.genre}</span>
@@ -445,7 +475,6 @@ function renderFeatured() {
       <div class="rating-stars">${stars(book.rating)}</div>
       <p class="featured-description">${book.description}</p>
       <div class="book-meta-row">
-        <span class="book-meta-item">Lido em <span>${book.readIn}</span></span>
         <span class="book-meta-item">Páginas <span>${book.pages}</span></span>
         <span class="book-meta-item">Idioma <span>${book.language}</span></span>
       </div>
@@ -491,16 +520,19 @@ function renderGrid() {
   } else {
     grid.innerHTML = slice.map((book, i) => `
       <article class="book-card" style="animation-delay:${i * 0.06}s">
-        <div class="card-number">${pad(start + i + 1)}</div>
-        <span class="card-genre">${book.genre}</span>
-        <h3 class="card-title">${book.title}</h3>
-        <p class="card-author">${book.author} — ${book.year}</p>
-        <div class="card-divider"></div>
-        <p class="card-description">${book.description}</p>
-        <div class="card-footer">
-          <span class="card-stars">${stars(book.rating)}</span>
-          <span class="card-year">Lido em ${book.readIn}</span>
+        <div class="card-content">
+          <div class="card-number">${pad(start + i + 1)}</div>
+          <span class="card-genre">${book.genre}</span>
+          <h3 class="card-title">${book.title}</h3>
+          <p class="card-author">${book.author} — ${book.year}</p>
+          <div class="card-divider"></div>
+          <p class="card-description">${book.description}</p>
+          <div class="card-footer">
+            <span class="card-stars">${stars(book.rating)}</span>
+            <span class="card-year">Lido em ${book.readIn}</span>
+          </div>
         </div>
+        <img src='/public/imgs/${book.img}' alt='${book.title}' class="card-thumb">
       </article>
     `).join('');
   }
